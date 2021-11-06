@@ -15,7 +15,7 @@ showModal = () => modalWrapper.style.visibility = 'visible';
 hideModal = () => modalWrapper.style.visibility = 'hidden';
 
 const modalClose = document.querySelector('.modal-close');
-// modalClose.addEventListener('click', hideModal);
+modalClose.addEventListener('click', hideModal);
 
 browserSupportsHTMLTemplate = () => {
     return 'content' in document.createElement('template');

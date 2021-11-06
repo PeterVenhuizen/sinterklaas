@@ -33,88 +33,7 @@
 
     <div id="app">
         <nav><?php include 'components/nav.php'; ?></nav>
-        <main>
-
-            <!-- <div class="wishlist note-paper bg-pinkish">
-                <span class="top-tape"></span>
-                <header>
-                    <h2>Peter</h2>
-                    <i class="fas fa-bell"></i>
-                </header>
-                <ul>
-                    <li><i class="far fa-square"></i><a href="">Lucky Luke, een cowboy tussen het katoen.</a> - €7,95</li>
-                    <li class="bought"><i class="far fa-check-square"></i>Book #2</li>
-                    <li><i class="far fa-check-square"></i>Book #2</li>
-                    <li><i class="far fa-check-square"></i>Book #3</li>
-                    <li><i class="far fa-check-square"></i>Book #4</li>
-                    <li><i class="far fa-check-square"></i>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum sed incidunt debitis quibusdam quos esse. Porro, distinctio amet? Excepturi qui esse tempore, molestiae sit placeat assumenda? A vel temporibus eius.</li>
-                </ul>
-            </div>
-        
-            <div class="wishlist holed-paper bg-greenish">
-                <span class="top-tape"></span>
-                <header>
-                    <h2>Gertjan</h2>
-                    <i class="far fa-bell-slash"></i>
-                </header>
-                <ul>
-                    <li><i class="far fa-square"></i>Book #1</li>
-                    <li><i class="far fa-square"></i>Book #2</li>
-                    <li><i class="far fa-square"></i>Book #3</li>
-                    <li><i class="far fa-square"></i>Book #4</li>
-                </ul>
-            </div>
-        
-            <div class="wishlist squared-paper bg-blueish">
-                <span class="top-tape"></span>
-                <header>
-                    <h2>Willem</h2>
-                    <i class="far fa-bell-slash"></i>
-                </header>
-                <ul>
-                    <li><i class="far fa-square"></i>Book #1</li>
-                    <li><i class="far fa-square"></i><a href="">Lucky Luke, een cowboy tussen het katoen.</a> - €7,95</li>
-                    <li class="bought"><i class="far fa-check-square"></i>Book #2</li>
-                    <li><i class="far fa-square"></i>Book #4</li>
-                    <li><i class="far fa-square"></i>Book #1</li>
-                    <li><i class="far fa-square"></i>Book #2</li>
-                    <li><i class="far fa-square"></i>Book #3</li>
-                    <li class="bought"><i class="far fa-check-square"></i>Book #4</li>
-                </ul>
-            </div>
-
-            <div class="wishlist holed-paper bg-blueish">
-                <span class="top-tape"></span>
-                <header>
-                    <h2>Gertjan</h2>
-                    <i class="far fa-bell-slash"></i>
-                </header>
-                <ul>
-                    <li><i class="far fa-square"></i>Book #1</li>
-                    <li><i class="far fa-square"></i>Book #2</li>
-                    <li><i class="far fa-square"></i>Book #3</li>
-                    <li><i class="far fa-square"></i>Book #4</li>
-                </ul>
-            </div>
-
-            <div class="wishlist note-paper bg-yellowish">
-                <span class="top-tape"></span>
-                <header>
-                    <h2>Peter</h2>
-                    <i class="fas fa-bell"></i>
-                </header>
-                <ul>
-                    <li><i class="far fa-square"></i><a href="">Lucky Luke, een cowboy tussen het katoen.</a> - €7,95</li>
-                    <li class="bought"><i class="far fa-check-square"></i>Book #2</li>
-                    <li><i class="far fa-square"></i>Book #3</li>
-                    <li><i class="far fa-square"></i>Book #4</li>
-                    <li class="bought"><i class="far fa-check-square"></i>Book #1</li>
-                    <li><i class="far fa-square"></i>Book #2</li>
-                    <li><i class="far fa-square"></i>Book #3</li>
-                </ul>
-            </div> -->
-
-        </main>
+        <main></main>
     </div>
     
     <template id="wishlist-template">
@@ -134,6 +53,21 @@
             <span class="description"></span> - &euro;<span class="price"></span>
         </li>
     </template>
+
+    <div id="modal-wrapper">
+        <div class="modal">
+            <i class="fas fa-times modal-close"></i>
+            <form>
+                <h2>Bevestig aankoop</h2>
+                <p>Heb je dit cadeautje <em>echt</em> gekocht? Een aankoop kan
+                niet ongedaan worden gemaakt!</p>
+                <div class="form-inline">
+                    <button class="btn-annuleer btn-medium btn-error">Annuleren</button>
+                    <button class="btn-bevestig btn-medium btn-success">Bevestigen</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 </body>
 </html>
