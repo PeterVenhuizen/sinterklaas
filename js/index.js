@@ -58,10 +58,11 @@ createWishlistItem = (item) => {
 
     let itemHasBeenBought = item.bought === 1;
     if (itemHasBeenBought) {
+        li.classList.add('bought');
         i.classList.add('fa-check-square');
     } else {
         i.classList.add('fa-square');
-        i.addEventListener('click', buyPresent);
+        i.addEventListener('click', showConfirmationModal);
     }
 
     const span = wishlistItem.querySelectorAll('span');
@@ -110,10 +111,22 @@ rotateTapeRandomly = (wishlistEl) => {
     topTape.style.transform = `rotate(${randomRotation}deg)`;
 }
 
-buyPresent = (event) => {
-    console.log(event.target);
-    console.log(event.target.parentElement.getAttribute('data-wish-id'));
+
+/* Wish buying confirmation/cancelation */
+const btnBevestig = document.querySelector('.btn-bevestig');
+const btnAnnuleer = document.querySelector('.btn-annuleer');
+
+// attach wishID and show modal
+showConfirmationModal = (event) => {
     let wish_id = event.target.parentElement.getAttribute('data-wish-id');
+    btnBevestig.setAttribute('data-wish-id', wish_id);
+    showModal();
+}
+
+// buy confirmation event
+buyPresent = (event) => {
+    event.preventDefault();
+    let wish_id = event.target.getAttribute('data-wish-id');
     WISHES[wish_id].setWishAsBoughtInDB()
         .then(hasBeenBought => {
             if (hasBeenBought) {
@@ -122,5 +135,13 @@ buyPresent = (event) => {
         }) 
         .catch(error => console.error(error));
 }
+btnBevestig.addEventListener('click', buyPresent);
 
+// close modal
+btnAnnuleer.addEventListener('click', (event) => {
+    event.preventDefault();
+    hideModal();
+})
+
+/* Load all wishlists not owned by the logged-in user */
 window.addEventListener('load', loadAllWishlistButOfTheLoggedInUser);

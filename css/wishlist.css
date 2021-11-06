@@ -81,8 +81,8 @@
     text-decoration: line-through;
     opacity: 0.75;
 }
-.bought li i {
-    cursor: default;
+li.bought i {
+    cursor: not-allowed;
 }
 
 .bg-blueish { background-color: #ecf6fd }

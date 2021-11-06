@@ -54,5 +54,20 @@
         </li>
     </template>
 
+    <div id="modal-wrapper">
+        <div class="modal">
+            <i class="fas fa-times modal-close"></i>
+            <form>
+                <h2>Bevestig aankoop</h2>
+                <p>Heb je dit cadeautje <em>echt</em> gekocht? Een aankoop kan
+                niet ongedaan worden gemaakt!</p>
+                <div class="form-inline">
+                    <button class="btn-annuleer btn-medium btn-error">Annuleren</button>
+                    <button class="btn-bevestig btn-medium btn-success">Bevestigen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>
