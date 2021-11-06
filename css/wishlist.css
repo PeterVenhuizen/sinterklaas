@@ -1,0 +1,181 @@
+.wishlist {
+    line-height: 1;
+    position: relative;
+    box-sizing: border-box;
+    padding: 1em;
+    /* -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.5); */
+    border: 1px solid transparent;
+    background-color: #fbfbf8;
+    margin-top: 20px;
+}
+
+.wishlist header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+}
+.wishlist h2 {
+    font-size: 2em;
+}
+.wishlist header i {
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: color 0.15s ease-in-out;
+}
+.wishlist header i:hover {
+    color: var(--sint-red);
+}
+.wishlist ul {
+    margin-top: 17px;
+    list-style: none;
+}
+.wishlist li {
+    font-size: 18px;
+    line-height: 21px;
+}
+.wishlist li i {
+    cursor: pointer;
+    margin-right: 0.25em;
+}
+.wishlist span {
+    margin-left: 0em;
+}
+
+/* "Raised" corners -> https://codepen.io/martinwolf/pen/hxdmv */
+.wishlist::before,
+.wishlist::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    width: 40%;
+    height: 10px;
+    box-shadow: 0 5px 14px rgba(0,0,0,.8);
+    z-index: -1;
+    transition: all .3s ease-in-out;
+}
+
+.wishlist::before {
+    left: 10px;
+    transform: skew(-5deg) rotate(-5deg);
+}
+  
+.wishlist::after {
+    right: 10px;
+    transform: skew(5deg) rotate(5deg);
+}
+
+.wishlist:hover::before,
+.wishlist:hover::after {
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+}
+.wishlist:hover::before {
+    left: 5px;
+}
+.wishlist:hover::after {
+    right: 5px;
+}
+
+.bought {
+    text-decoration: line-through;
+    opacity: 0.75;
+}
+.bought li i {
+    cursor: default;
+}
+
+.bg-blueish { background-color: #ecf6fd }
+/* .bg-blueish { background-color: #bae1ff !important; } */
+.bg-greenish { background-color: #e6ffeb; }
+/* .bg-greenish { background-color: #baffc9; } */
+.bg-yellowish { background-color: #ffffe2; }
+/* .bg-yellowish { background-color: #fefabc; } */
+.bg-pinkish { background-color: #f0dbee; }
+/* .bg-pinkish { background-color: #f0bded; } */
+.bg-off-white { background-color: #faf9f6; }
+
+/* Different wishlist styles */
+.note-paper {
+    background-image: linear-gradient(0deg, #3d6f8e 2%, rgba(255, 255, 255, 0) 2%, rgba(255, 255, 255, 0) 50%, #3d6f8e 50%, #3d6f8e 52%, rgba(255, 255, 255, 0) 52%, rgba(255, 255, 255, 0) 100%),
+        linear-gradient(90deg, rgba(255, 255, 255, 0) 82.5%, #ff0000 82.5%, #ff0000 90%, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 0) 97.5%, #ff0000 100%);
+    background-size: 42px 42px,
+        32px 32px;
+    background-repeat: repeat, 
+        repeat-y;
+    border-color: #3d6f8e;
+    padding-left: 40px;
+}
+
+.holed-paper {
+    background-image: radial-gradient(16px circle at 20.5px 21px, #fff 50%, transparent 51%), 
+        radial-gradient(18px circle at 20px 20px, rgba(0, 0, 0, 0.5) 50%, transparent 51%),
+        radial-gradient(2px circle at 40px 4px, rgba(0, 0, 0, 0.5) 50%, transparent 51%);
+    background-size: 38px 38px,
+        38px 38px,
+        42px 8px;
+    background-repeat: repeat-y;
+    border-radius: 0 8px 8px 0;
+    padding-left: 55px;
+}
+
+.squared-paper {
+    background-image: linear-gradient(0deg, #8d8d8d 2%, rgba(255, 255, 255, 0) 2%, rgba(255, 255, 255, 0) 50%, #8d8d8d 50%, #8d8d8d 52%, rgba(255, 255, 255, 0) 52%, rgba(255, 255, 255, 0) 100%),
+        linear-gradient(90deg, #8d8d8d 2%, rgba(255, 255, 255, 0) 2%, rgba(255, 255, 255, 0) 50%, #8d8d8d 50%, #8d8d8d 52%, rgba(255, 255, 255, 0) 52%, rgba(255, 255, 255, 0) 100%);
+    background-size: 42px 42px,
+        42px 42px;
+    border: 1px solid #8d8d8d;
+    border-left: none;
+    padding-left: 25px;
+    /* background-color: #fdfdfd; */
+
+}
+
+/* https://codepen.io/aitchiss/pen/QWKmPqx */
+.top-tape {
+    position: absolute;
+    height: 40px;
+    top: -22px;
+    /* left: 125px; */
+    width: 150px;
+    background-color: rgb(190, 202, 219, 0.5);
+    /* background-color: var(--warning-orange-shade); */
+  }
+
+
+.required {
+    color: red;
+}
+.form-inline {
+    display: flex;
+    flex-direction: column;
+}
+
+@media all and (min-width: 700px) {
+    .wishlist {
+        min-width: 250px;
+        max-width: 320px;
+    }
+
+    .wishlist.big {
+        align-self: flex-start;
+        max-width: 800px;
+        -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.5);
+        box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .big::before,
+    .big::after {
+        transform: initial;
+    }
+
+    .form-inline {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+    }
+    .form-inline input[type] {
+        width: 85%;
+    }
+}
