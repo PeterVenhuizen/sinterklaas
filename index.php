@@ -6,6 +6,8 @@
         header("Location: /users/?redirectedFrom=sinterklaas/");
     }
 
+    print_r($_SESSION);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +25,9 @@
         crossorigin="anonymous">
     </script>
     <script defer src="./js/functions.js"></script>
-    <script defer src="./js/Wishlist.js"></script>
+    <!-- <script defer src="./js/Wishlist.js"></script> -->
+    <script defer src="./js/Wish.js"></script>
+    <script defer src="./js/index.js"></script>
 </head>
 <body>
 
@@ -31,7 +35,7 @@
         <nav><?php include 'components/nav.php'; ?></nav>
         <main>
 
-            <div class="wishlist note-paper bg-pinkish">
+            <!-- <div class="wishlist note-paper bg-pinkish">
                 <span class="top-tape"></span>
                 <header>
                     <h2>Peter</h2>
@@ -108,7 +112,7 @@
                     <li><i class="far fa-square"></i>Book #2</li>
                     <li><i class="far fa-square"></i>Book #3</li>
                 </ul>
-            </div>
+            </div> -->
 
         </main>
     </div>
@@ -124,9 +128,9 @@
         </div>
     </template>
 
-    <template id="wishlist-line-template">
+    <template id="wishlist-item-template">
         <li>
-            <i class="far"></li>
+            <i class="far"></i>
             <span class="description"></span> - &euro;<span class="price"></span>
         </li>
     </template>

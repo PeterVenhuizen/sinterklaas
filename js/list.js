@@ -4,21 +4,7 @@ const myListUL = document.getElementById('my-wishlist');
 const insertForm = document.getElementById('form-insert-wish');
 const updateForm = document.getElementById('form-update-wish');
 
-browserSupportsHTMLTemplate = () => {
-    return 'content' in document.createElement('template');
-    // return false;
-}
-
-createDOMElement = (element, textContent, attributes={}) => {
-    const el = document.createElement(element);
-    for (const [key, value] of Object.entries(attributes)) {
-        el.setAttribute(key, value);
-    }
-    el.textContent = textContent;
-    return el;
-}
-
-createWishElementWithHTMLTemplate = (wish) => {
+createWishElementWithHTMLTemplate = (template, wish) => {
     let clone = template.content.cloneNode(true);
     const li = clone.querySelector('li');
     li.setAttribute('data-wish-id', wish.wishID);
@@ -90,7 +76,7 @@ window.addEventListener('load', () => {
                     wishes[wish.wishID] = wish;
 
                     if (browserSupportsHTMLTemplate()) {
-                        myListUL.appendChild(createWishElementWithHTMLTemplate(wish));
+                        myListUL.appendChild(createWishElementWithHTMLTemplate(template, wish));
 
                     } else {
                         // myListUL.appendChild(createWishElementWithJQuery(wish));
