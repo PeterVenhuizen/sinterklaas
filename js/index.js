@@ -56,6 +56,14 @@ createWishlistItem = (item) => {
     const i = wishlistItem.querySelector('i');
     i.classList.add(item.bought === 1 ? 'fa-check-square' : 'fa-square');
 
+    let itemHasBeenBought = item.bought === 1;
+    if (itemHasBeenBought) {
+        i.classList.add('fa-check-square');
+    } else {
+        i.classList.add('fa-square');
+        i.addEventListener('click', buyPresent);
+    }
+
     const span = wishlistItem.querySelectorAll('span');
     const wishHasAStoreURL = item.store_url.length > 0;
     if (wishHasAStoreURL) {
@@ -100,6 +108,19 @@ rotateTapeRandomly = (wishlistEl) => {
     const topTape = wishlistEl.querySelector('.top-tape');
     const randomRotation = randomIntFromInterval(-3, 3);
     topTape.style.transform = `rotate(${randomRotation}deg)`;
+}
+
+buyPresent = (event) => {
+    console.log(event.target);
+    console.log(event.target.parentElement.getAttribute('data-wish-id'));
+    let wish_id = event.target.parentElement.getAttribute('data-wish-id');
+    WISHES[wish_id].setWishAsBoughtInDB()
+        .then(hasBeenBought => {
+            if (hasBeenBought) {
+                location.reload();
+            }
+        }) 
+        .catch(error => console.error(error));
 }
 
 window.addEventListener('load', loadAllWishlistButOfTheLoggedInUser);
