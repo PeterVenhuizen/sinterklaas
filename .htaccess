@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteBase /sinterklaas/
+
+    # automatically add a trialing slash, if missing
+    RewriteCond %{REQUEST_URI} !(/$|\.) 
+    RewriteRule (.*) %{REQUEST_URI}/ [R=301,L] 
+
+    RewriteRule ^mijn_lijstje/ list.php
+    RewriteRule ^hoofdpiet/ hoofdpiet.php
+
+    # logout
+    RewriteRule ^logout/ logout.php
+
+    # 403 and 404
+    ErrorDocument 403 /sinterklaas/404.php
+    ErrorDocument 404 /sinterklaas/404.php
+
+</IfModule>
