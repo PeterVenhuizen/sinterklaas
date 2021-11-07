@@ -1,0 +1,49 @@
+h2 {
+    /* margin-bottom: 0.5em; */
+}
+
+#surprise-planner {
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+    flex: 0 0 100%;
+    font-size: 1.25em;
+}
+.surprise {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+    border: 1px solid var(--not-quite-black);
+    color: var(--text-gray);
+}
+.surprise.actief {
+    color: black;
+    background-color: var(--primary-blue-shade);
+}
+.surprise:not(:first-of-type) {
+    border-top: none;
+}
+.surprise:first-of-type {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.surprise:last-of-type {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+button {
+    align-self: flex-end;
+}
+
+
+@media (min-width: 700px) {
+    #app > main {
+        width: 100%;
+        max-width: 800px;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+}
