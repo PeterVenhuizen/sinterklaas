@@ -22,10 +22,10 @@ class Wish {
     async insertWishInDB() {
         postData("controllers/wish_insert.php", {
             userID: this.#userID,
-            description: this.#description,
-            price: this.#price,
-            store: this.#store,
-            store_url: this.#store_url
+            beschrijving: this.#description,
+            prijs: this.#price,
+            winkel: this.#store,
+            url: this.#store_url
         })
         .then(data => {
             console.log(data);
@@ -44,7 +44,7 @@ class Wish {
 
     /* Set a present as bought in DB */
     async setWishAsBoughtInDB() {
-        return postData("controllers/wish_set_bought.php", { wishID: this.#wishID })
+        return postData("controllers/wish_set_bought.php", { ID: this.#wishID })
             .then(hasBeenBought => hasBeenBought);
     }
 
@@ -52,11 +52,11 @@ class Wish {
     async updateWishInDB(description, price, store, store_url) {
 
         return postData("controllers/wish_update.php", { 
-            wishID: this.#wishID,
-            description: description,
-            price: price,
-            store: store,
-            store_url: store_url
+            ID: this.#wishID,
+            beschrijving: description,
+            prijs: price,
+            winkel: store,
+            url: store_url
         })
         .then(hasBeenUpdated => hasBeenUpdated);
     }

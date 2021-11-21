@@ -15,6 +15,14 @@ CREATE TABLE lijstje (
 INSERT INTO lijstje (userID, surpriseID, beschrijving, prijs)
     VALUES (?, (SELECT ID FROM surprise WHERE isActief), ?, ?);
 
+SELECT lijstje.*, (SELECT username FROM users WHERE users.id = lijstje.userID) AS naam 
+FROM lijstje
+INNER JOIN (
+    SELECT ID FROM surprise
+    WHERE isActief
+) surprise on surprise.ID = lijstje.surpriseID
+WHERE userID != ?
+
 CREATE TABLE surprise (
     ID INTEGER NOT NULL AUTO_INCREMENT,
     datum DATE NOT NULL,
