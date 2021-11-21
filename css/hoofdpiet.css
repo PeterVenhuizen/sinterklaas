@@ -1,11 +1,21 @@
-h2 {
-    /* margin-bottom: 0.5em; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+@import 'defaults.css';
+@import 'nav.css'; /* nav */
+@import 'modal.css';
+
+/* 404 */
+.four-o-four p {
+    color: var(--text-gray);
+    margin-top: 0.5em;
+}
+
+/* #app > main {
+    display: block;
 }
 
 #surprise-planner {
     display: flex;
     flex-direction: column;
-    /* width: 100%; */
     flex: 0 0 100%;
     font-size: 1.25em;
 }
@@ -31,19 +41,15 @@ h2 {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-button {
-    align-self: flex-end;
-}
 
+
+#nieuwe-surprise {
+    display: flex;
+}
 
 @media (min-width: 700px) {
     #app > main {
         width: 100%;
         max-width: 800px;
-
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        align-items: flex-start;
     }
-}
+} */
