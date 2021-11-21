@@ -6,8 +6,6 @@
         header("Location: /users/?redirectedFrom=sinterklaas/");
     }
 
-    print_r($_SESSION);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
