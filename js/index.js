@@ -43,20 +43,20 @@ createWishlists = (wishes) => {
 }
 
 saveWishInGlobalWishes = (item) => {
-    WISHES[item.wishID] = new Wish(item.wishID, item.userID,
-        item.description, item.price, item.store, item.store_url);
+    WISHES[item.ID] = new Wish(item.ID, item.userID,
+        item.beschrijving, item.prijs, item.winkel, item.url);
 }
 
 createWishlistItem = (item) => {
 
     let wishlistItem = wishlistItemTemplate.content.cloneNode(true);
     const li = wishlistItem.querySelector('li');
-    li.setAttribute('data-wish-id', item.wishID);
+    li.setAttribute('data-wish-id', item.ID);
 
     const i = wishlistItem.querySelector('i');
-    i.classList.add(item.bought === 1 ? 'fa-check-square' : 'fa-square');
+    i.classList.add(item.isGekocht === 1 ? 'fa-check-square' : 'fa-square');
 
-    let itemHasBeenBought = item.bought === 1;
+    let itemHasBeenBought = item.isGekocht === 1;
     if (itemHasBeenBought) {
         li.classList.add('bought');
         i.classList.add('fa-check-square');
@@ -66,16 +66,16 @@ createWishlistItem = (item) => {
     }
 
     const span = wishlistItem.querySelectorAll('span');
-    const wishHasAStoreURL = item.store_url.length > 0;
+    const wishHasAStoreURL = item.url !== null;
     if (wishHasAStoreURL) {
-        const a = createDOMElement('a', item.description, 
-            { href: item.store_url, target: '_blank' });
+        const a = createDOMElement('a', item.beschrijving, 
+            { href: item.url, target: '_blank' });
         span[0].appendChild(a);
     } else {
-        span[0].textContent = item.description;
+        span[0].textContent = item.beschrijving;
     }
 
-    span[1].textContent = String(item.price).replace('.', ',');
+    span[1].textContent = String(item.prijs).replace('.', ',');
 
     return wishlistItem;
 }

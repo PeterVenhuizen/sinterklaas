@@ -1,3 +1,28 @@
+CREATE TABLE lijstje (
+    ID INTEGER NOT NULL AUTO_INCREMENT,
+    userID INTEGER NOT NULL,
+    surpriseID INTEGER NOT NULL,
+    beschrijving VARCHAR(255) NOT NULL,
+    prijs FLOAT NOT NULL,
+    winkel VARCHAR(255) DEFAULT NULL,
+    url TEXT DEFAULT NULL,
+    isGekocht BOOLEAN DEFAULT 0,
+    PRIMARY KEY (ID),
+    FOREIGN KEY (userID) REFERENCES users(id),
+    FOREIGN KEY (surpriseID) REFERENCES surprise(ID)
+);
+
+INSERT INTO lijstje (userID, surpriseID, beschrijving, prijs)
+    VALUES (?, (SELECT ID FROM surprise WHERE isActief), ?, ?);
+
+SELECT lijstje.*, (SELECT username FROM users WHERE users.id = lijstje.userID) AS naam 
+FROM lijstje
+INNER JOIN (
+    SELECT ID FROM surprise
+    WHERE isActief
+) surprise on surprise.ID = lijstje.surpriseID
+WHERE userID != ?
+
 CREATE TABLE surprise (
     ID INTEGER NOT NULL AUTO_INCREMENT,
     datum DATE NOT NULL,

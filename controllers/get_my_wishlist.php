@@ -2,7 +2,12 @@
     include_once '../config/includeFromBottom.php';
 
     // insert the new wish
-    $stmt = $db->run("SELECT * FROM `wish` WHERE `userID` = ?", 
+    $stmt = $db->run("SELECT lijstje.* FROM `lijstje` 
+        INNER JOIN (
+            SELECT ID FROM `surprise`
+            WHERE `isActief`
+        ) surprise ON surpriseID = lijstje.surpriseID
+        WHERE `userID` = ?", 
         [$_SESSION['user_id']]);
 
     if ($stmt->rowCount() > 0) {

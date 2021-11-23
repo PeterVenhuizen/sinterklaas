@@ -1,9 +1,9 @@
 <?php
     include_once '../config/includeFromBottom.php';
 
-    $stmt = $db->run("SELECT wish.*, users.username FROM wish, users
-        WHERE wish.userID != ? AND wish.userID = users.id
-        ORDER BY wish.userID DESC", 
+    $stmt = $db->run("SELECT lijstje.*, users.username FROM lijstje, users
+        WHERE lijstje.userID != ? AND lijstje.userID = users.id 
+        ORDER BY lijstje.userID DESC", 
         [$_SESSION['user_id']]);
 
     if ($stmt->rowCount() > 0) {
