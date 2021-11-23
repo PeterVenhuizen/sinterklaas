@@ -8,8 +8,20 @@ loadAllWishlistButOfTheLoggedInUser = () => {
     fetch('controllers/get_everyone_but_my_wishlist.php')
         .then(response => response.json())
         .then(data => {
-            let wishes = data.wishes;
-            createWishlists(wishes);
+            if (data.success) {
+                let wishes = data.wishes;
+                createWishlists(wishes);
+            } else {
+                const wishlist = document.createElement('div');
+                wishlist.classList.add('wishlist', 'bg-pinkish');
+                
+                const p = document.createElement('p');
+                p.classList.add('empty-p');
+                p.innerHTML = 'Nog niet niemand heeft een lijstje aangemaakt!!! &#128543;<br/><br/>Ben jij de eerste?';
+                
+                wishlist.appendChild(p);
+                main.appendChild(wishlist);
+            }
         })
         .catch(error => console.error(error));
 }
