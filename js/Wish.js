@@ -50,7 +50,6 @@ class Wish {
 
     /* Update Wish data in DB and return if update query succeeded */
     async updateWishInDB(description, price, store, store_url) {
-
         return postData("controllers/wish_update.php", { 
             ID: this.#wishID,
             beschrijving: description,
