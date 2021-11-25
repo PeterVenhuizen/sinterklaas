@@ -49,6 +49,30 @@
                     </p>
                 </div>
                 <button id="show-insert-form" class="btn-primary btn-small">Plan nieuwe surprise</button>
+
+                <div>
+                    <h2>Selecteer deelnemers</h2>
+                    <p>
+                        Selecteer de deelnemers voor de surprise. In de linker kolom staan alle geregistreerde
+                        gebruikers en in de rechter kolom de deelnemers reeds geselecteerd voor de actieve surprise.
+                        Gebruikers kunnen tussen de twee kolommen gesleept worden en deelnemers kunnen worden
+                        vastgelegd door op de "Opslaan" knop te klikken.
+                    </p>
+                    <div id="selecteer-deelnemers">
+                        <div id="alle-gebruikers" data-drop-target="true">
+                            <h3>Alle gebruikers</h3>
+                            <div draggable="true" class="drag-user" data-user-id="1">Peter</div>
+                            <div draggable="true" class="drag-user" data-user-id="2">Papa</div>
+                            <div draggable="true" class="drag-user" data-user-id="3">Willem</div>
+                            <div draggable="true" class="drag-user" data-user-id="4">Jeroen</div>
+                        </div>
+                        <i class="fas fa-exchange-alt"></i>
+                        <div id="gekozen-gebruikers" data-drop-target="true">
+                            <h3>Surprise deelnemers</h3>
+                        </div>
+                    </div>
+                </div>
+                <button id="save-surprise-deelnemers" class="btn-primary btn-small">Opslaan</button>
             </div>
 
         </main>
