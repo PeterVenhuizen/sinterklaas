@@ -69,6 +69,18 @@
                     </div>
                 </div>
                 <button id="save-surprise-deelnemers" class="btn-primary btn-small">Opslaan</button>
+
+                <div>
+                    <h2>Trekking</h2>
+                    <details>
+                        <summary><i class="fas fa-exclamation-circle"></i> Spoiler: bekijk trekking <i class="fas fa-exclamation-circle"></i></summary>
+                        <div>Peter -> Papa</div>
+                        <div>Papa -> Mama</div>
+                        <div>Mama -> Peter</div>
+                    </details>
+                </div>
+                <button id="doe-trekking" class="btn-primary btn-small">Doe trekking</button>
+
             </div>
 
         </main>

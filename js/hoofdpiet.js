@@ -115,6 +115,7 @@ function lockUp() {
 	targets[0].classList.add('is-locked');
 	targets[1].classList.add('is-locked');
 	opslaanButton.setAttribute('disabled', true);
+	buttonTrekking.setAttribute('disabled', true);
 }
 
 function handleDragStart(e) {
@@ -178,3 +179,4 @@ opslaanButton.addEventListener('click', (e) => {
 });
 
 // doe een trekking voor de actieve surprise met de geselecteerde deelnemers
+const buttonTrekking = document.getElementById('doe-trekking');
