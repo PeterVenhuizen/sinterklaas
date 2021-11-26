@@ -109,8 +109,10 @@ button {
     background-color: white;
     border-radius: 5px;
     padding: 0.75em;
-    cursor: move;
     flex-basis: content;
+}
+[draggable] {
+    cursor: move;
 }
 
 [data-drop-target] {
@@ -136,4 +138,9 @@ button {
 .fa-exchange-alt {
     align-self: center;
     font-size: 2.5em;
+}
+
+.is-locked {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

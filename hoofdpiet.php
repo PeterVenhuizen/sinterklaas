@@ -61,10 +61,6 @@
                     <div id="selecteer-deelnemers">
                         <div id="alle-gebruikers" data-drop-target="true">
                             <h3>Alle gebruikers</h3>
-                            <div draggable="true" class="drag-user" data-user-id="1">Peter</div>
-                            <div draggable="true" class="drag-user" data-user-id="2">Papa</div>
-                            <div draggable="true" class="drag-user" data-user-id="3">Willem</div>
-                            <div draggable="true" class="drag-user" data-user-id="4">Jeroen</div>
                         </div>
                         <i class="fas fa-exchange-alt"></i>
                         <div id="gekozen-gebruikers" data-drop-target="true">
