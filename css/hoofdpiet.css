@@ -46,12 +46,13 @@
     }
 }
 
+/* surprise planner */
 #surprise-planner {
     display: flex;
     flex-direction: column;
 }
-#surprise-planner p {
-    margin-bottom: 0.75em;
+div p {
+    margin: .25em 0 .5em 0;
 }
 .surprise {
     font-size: 1.25em;
@@ -80,11 +81,66 @@ i[class*="fa-calendar"] {
     cursor: pointer;
 }
 
-#show-insert-form {
+button {
     align-self: flex-end;
     margin-top: 1em;
 }
 
 .modal-form-elements {
     display: none;
+}
+
+/* selecteer deelnemers */
+#selecteer-deelnemers {
+    display: flex;
+
+    border-radius: 5px;
+    justify-content: space-between;
+}
+#alle-gebruikers, #gekozen-gebruikers {
+    /* background-color: red; */
+    width: 40%;
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+}
+.drag-user {
+    border: 1px solid var(--not-quite-black);
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.75em;
+    flex-basis: content;
+}
+[draggable] {
+    cursor: move;
+}
+
+[data-drop-target] {
+    width: 45%;
+    /* background-color: var(--off-white); */
+    border: 1px solid var(--not-quite-black);
+    border-radius: 5px;
+    padding: 0.5em;
+}
+[data-drop-target] h3 {
+    flex-basis: 100%;
+    text-align: center;
+    margin: 0.5em 0;
+}
+.drag-enter {
+    border: 1px dashed var(--primary-blue);
+}
+.being-dragged {
+    background-color: var(--primary-blue-shade);
+    opacity: 0.5;
+}
+
+.fa-exchange-alt {
+    align-self: center;
+    font-size: 2.5em;
+}
+
+.is-locked {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

@@ -44,10 +44,17 @@ COMMIT;
 CREATE TABLE surprise_to_user (
     surpriseID INTEGER NOT NULL,
     userID INTEGER NOT NULL,
+    getrokkenID INTEGER DEFAULT NULL,
     PRIMARY KEY (surpriseID, userID),
     FOREIGN KEY (surpriseID) REFERENCES surprise(ID),
-    FOREIGN KEY (userID) REFERENCES users(id)
+    FOREIGN KEY (userID) REFERENCES users(id),
+    FOREIGN KEY (getrokkenID) REFERENCES users(id)
 );
+
+SELECT id, username FROM users WHERE privileges >= 1;
+
+SELECT userID FROM surprise_to_user 
+WHERE surpriseID = (SELECT ID FROM surprise WHERE isActief);
 
 CREATE TABLE surprise_lootjes (
     surpriseID INTEGER NOT NULL,

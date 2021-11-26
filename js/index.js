@@ -114,7 +114,6 @@ addRandomWishlistStyleAndColor = (wishlistEl) => {
 
 putTapeInTheMiddle = (wishlistEl) => {
     const topTape = wishlistEl.querySelector('.top-tape');
-    console.log(topTape);
     topTape.style.left = `${(wishlistEl.offsetWidth - topTape.offsetWidth) / 2}px`;
 }
 
