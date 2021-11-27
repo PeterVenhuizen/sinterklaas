@@ -48,20 +48,19 @@ CREATE TABLE surprise_to_user (
     PRIMARY KEY (surpriseID, userID),
     FOREIGN KEY (surpriseID) REFERENCES surprise(ID),
     FOREIGN KEY (userID) REFERENCES users(id),
-    FOREIGN KEY (getrokkenID) REFERENCES users(id)
+    FOREIGN KEY (getrokkenID) REFERENCES users(id),
+    CONSTRAINT eenDeelnemerKanNietHunEigenLootjeHebben CHECK (userID != getrokkenID)
 );
 
 SELECT id, username FROM users WHERE privileges >= 1;
-
 SELECT userID FROM surprise_to_user 
 WHERE surpriseID = (SELECT ID FROM surprise WHERE isActief);
 
-CREATE TABLE surprise_lootjes (
-    surpriseID INTEGER NOT NULL,
-    userID INTEGER NOT NULL,
-    getrokkenID INTEGER NOT NULL,
-    PRIMARY KEY (surpriseID, userID, getrokkenID),
-    FOREIGN KEY (surpriseID) REFERENCES surprise(ID),
-    FOREIGN KEY (userID) REFERENCES surprise_to_user(userID),
-    FOREIGN KEY (getrokkenID) REFERENCES surprise_to_user(userID)
-);
+SELECT 
+    (SELECT username FROM users WHERE users.id = surprise_to_user.userID) AS username,
+    (SELECT username FROM users WHERE users.id = surprise_to_user.getrokkenID) AS lootje
+FROM surprise_to_user
+INNER JOIN (
+    SELECT surprise.ID FROM surprise
+    WHERE isActief
+) surprise ON surprise.ID = surprise_to_user.surpriseID
