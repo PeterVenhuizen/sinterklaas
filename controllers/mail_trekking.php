@@ -24,7 +24,7 @@
             (SELECT email FROM users WHERE users.id = sint_surprise_to_user.userID) AS email
         FROM sint_surprise_to_user
         INNER JOIN (
-            SELECT sint_surprise.ID FROM sint_urprise
+            SELECT sint_surprise.ID FROM sint_surprise
             WHERE isActief
         ) sint_surprise ON sint_surprise.ID = sint_surprise_to_user.surpriseID");
 
@@ -62,7 +62,7 @@
 
             $body .= '<p>Zoals vanouds kunnen de cadeautjes groot en klein worden doorgestreept op
             de <a href="https://petervenhuizen.nl/sinterklaas/">Sinterklaas website</a>, maar daarvoor
-            moet je natuurlijk wel snel je <a href="https://petervenhuizen/sinterklaas/mijn_lijstje/">lijstje</a> 
+            moet je natuurlijk wel snel je <a href="https://petervenhuizen.nl/sinterklaas/mijn_lijstje/">lijstje</a> 
             samenstellen!</p>';
 
             $body .= '<p>De (digitale) bingoballen zijn al gepoetst en zijn helemaal klaar voor 
