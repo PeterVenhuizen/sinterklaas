@@ -51,21 +51,21 @@
 
             // content
             $body = "<p>Beste ${record['username']},</p>";
-            $body .= "<p>De lootjes zijn getrokken en jij hebt het lootje van: <br/><br/> 
+            $body .= "<p>De lootjes zijn getrokken en jij hebt het lootje van <br/><br/> 
             >>> <span style='font-weight:bold';>${record['lootje']}</span> <<< </p>";
 
             $body .= "<p>We vieren het dit jaar op ${datum} en de prijs voor de kleine 
             cadeautjes is &euro;${surprise['prijsKlein']} en voor het grote cadeau is dit &euro;${surprise['prijsGroot']}.
-            De \"spelregels\" zijn als volgt: 1) je schrijft een gedicht(je) en koopt een groot cadeau
+            De spelregels zijn als volgt: 1) je schrijft een gedicht(je) en koopt een groot cadeau
             voor de persoon op jouw lootje en 2) je koopt een klein cadeautje voor iedereen die mee doet,
-            dus ook nog eens voor de persoon op jouw lootje.</p>";
+            dus ook nog een klein cadeautje voor de persoon op je lootje.</p>";
 
             $body .= '<p>Zoals vanouds kunnen de cadeautjes groot en klein worden doorgestreept op
             de <a href="https://petervenhuizen.nl/sinterklaas/">Sinterklaas website</a>, maar daarvoor
             moet je natuurlijk wel snel je <a href="https://petervenhuizen.nl/sinterklaas/mijn_lijstje/">lijstje</a> 
             samenstellen!</p>';
 
-            $body .= '<p>De (digitale) bingoballen zijn al gepoetst en zijn helemaal klaar voor 
+            $body .= '<p>De (digitale) bingoballen zijn gepoetst en zijn helemaal klaar voor 
             meerdere ronden veel te fanatiek bingo spelen!</p>';
 
             $body .= '<p>Tot snel!</p><p>De Website-Piet</p>';
@@ -80,7 +80,6 @@
 
         } catch (Exception $e) {
             // print_r($e);
-            print_r($e);
             exit;
         }
 
