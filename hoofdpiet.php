@@ -83,6 +83,8 @@
                 </div>
                 <button id="doe-trekking" class="btn-primary btn-small">Trek lootjes</button>
 
+                <div class="dot-flashing"></div>
+
             </div>
 
         </main>

@@ -211,6 +211,8 @@ buttonTrekking.addEventListener('click', (e) => {
 	if (tweeOfMeerDeelnemers) {
 
 		(async () => {
+			const flashingDots = document.querySelector('.dot-flashing');
+			flashingDots.style.display = 'flex';
 			try {
 				const setTrekking = await fetch('controllers/set_trekking.php')
 					.then(response => response);
