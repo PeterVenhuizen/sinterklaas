@@ -219,6 +219,7 @@ buttonTrekking.addEventListener('click', (e) => {
 					const mailTrekking = await fetch('controllers/mail_trekking.php')
 						.then(response => response);
 
+					console.log(mailTrekking);
 					if (mailTrekking.ok) {
 						location.reload();
 					}

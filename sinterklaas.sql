@@ -64,3 +64,4 @@ INNER JOIN (
     SELECT surprise.ID FROM surprise
     WHERE isActief
 ) surprise ON surprise.ID = surprise_to_user.surpriseID
+
