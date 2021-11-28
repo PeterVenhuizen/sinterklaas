@@ -17,7 +17,7 @@ loadAllWishlistButOfTheLoggedInUser = () => {
                 
                 const p = document.createElement('p');
                 p.classList.add('empty-p');
-                p.innerHTML = 'Nog niet niemand heeft een lijstje aangemaakt!!! &#128543;<br/><br/>Ben jij de eerste?';
+                p.innerHTML = 'Nog niemand heeft een lijstje aangemaakt!!! &#128543;<br/><br/>Ben jij de eerste?';
                 
                 wishlist.appendChild(p);
                 main.appendChild(wishlist);
