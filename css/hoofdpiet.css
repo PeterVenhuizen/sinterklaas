@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+@import 'defaults.css';
+@import 'nav.css'; /* nav */
+@import 'modal.css';
+
+/* 404 */
+.four-o-four p {
+    color: var(--text-gray);
+    margin-top: 0.5em;
+}
+
+/* layout */
+#app {
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        'header'
+        'main';
+}
+#app > header {
+    grid-area: header;
+}
+#app > main {
+    grid-area: main;
+    height: 100%;
+    display: flex;
+    gap: 1em;
+    padding: 1em;
+    overflow-y: auto;
+}
+
+#app .center-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+}
+
+@media all and (min-width: 700px) {
+    
+    #app > main {
+        align-items: flex-start;
+        justify-content: center;
+    }
+}
+
+/* surprise planner */
+#surprise-planner {
+    display: flex;
+    flex-direction: column;
+}
+div p {
+    margin: .25em 0 .5em 0;
+}
+.surprise {
+    font-size: 1.25em;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+    border: 1px solid var(--not-quite-black);
+    color: var(--text-gray);
+}
+.surprise.actief {
+    color: black;
+    background-color: var(--primary-blue-shade);
+}
+.surprise:not(:first-of-type) {
+    border-top: none;
+}
+.surprise:first-of-type {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.surprise:last-of-type {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+i[class*="fa-calendar"] {
+    cursor: pointer;
+}
+
+button {
+    align-self: flex-end;
+    margin-top: 1em;
+}
+
+.modal-form-elements {
+    display: none;
+}
+
+/* selecteer deelnemers */
+#selecteer-deelnemers {
+    display: flex;
+
+    border-radius: 5px;
+    justify-content: space-between;
+}
+#alle-gebruikers, #gekozen-gebruikers {
+    /* background-color: red; */
+    width: 40%;
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+}
+.drag-user {
+    border: 1px solid var(--not-quite-black);
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.75em;
+    flex-basis: content;
+}
+[draggable] {
+    cursor: move;
+}
+
+[data-drop-target] {
+    width: 45%;
+    /* background-color: var(--off-white); */
+    border: 1px solid var(--not-quite-black);
+    border-radius: 5px;
+    padding: 0.5em;
+}
+[data-drop-target] h3 {
+    flex-basis: 100%;
+    text-align: center;
+    margin: 0.5em 0;
+}
+.drag-enter {
+    border: 1px dashed var(--primary-blue);
+}
+.being-dragged {
+    background-color: var(--primary-blue-shade);
+    opacity: 0.5;
+}
+
+.fa-exchange-alt {
+    align-self: center;
+    font-size: 2.5em;
+}
+
+.is-locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* trekking */
+details {
+    border: 1px solid var(--not-quite-black);
+    border-radius: 5px;
+    padding: .5em .5em 0;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+summary .fa-exclamation-circle {
+    color: var(--error-red);
+}
+details[open] {
+    padding: .5em;
+    color: var(--text-gray);
+}
+details[open] summary {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: .5em;
+}
+
+/* waiting dots */
+.dot-flashing {
+    display: none;
+    align-self: flex-end;
+    margin: .5em 2.3em;
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    /* background-color: #9880ff; */
+    background-color: var(--primary-blue);
+    color: var(--primary-blue);
+    animation: dotFlashing 1s infinite linear alternate;
+    animation-delay: .5s;
+  }
+  
+  .dot-flashing::before, .dot-flashing::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+  }
+  
+  .dot-flashing::before {
+    left: -15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: var(--primary-blue);
+    color: var(--primary-blue);
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: 0s;
+  }
+  
+  .dot-flashing::after {
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: var(--primary-blue);
+    color: var(--primary-blue);
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: 1s;
+  }
+  
+  @keyframes dotFlashing {
+    0% {
+      background-color: var(--primary-blue);
+    }
+    50%,
+    100% {
+      background-color: #ebe6ff;
+    }
+  }

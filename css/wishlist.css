@@ -9,6 +9,11 @@
     background-color: #fbfbf8;
     margin-top: 20px;
 }
+.empty-p {
+    font-size: 1.25em;
+    text-align: center;
+    margin: 1em 0;
+}
 
 .wishlist header {
     display: flex;
@@ -81,8 +86,8 @@
     text-decoration: line-through;
     opacity: 0.75;
 }
-.bought li i {
-    cursor: default;
+li.bought i {
+    cursor: not-allowed;
 }
 
 .bg-blueish { background-color: #ecf6fd }

@@ -16,3 +16,26 @@ hideModal = () => modalWrapper.style.visibility = 'hidden';
 
 const modalClose = document.querySelector('.modal-close');
 modalClose.addEventListener('click', hideModal);
+
+browserSupportsHTMLTemplate = () => {
+    return 'content' in document.createElement('template');
+    // return false;
+}
+
+createDOMElement = (element, textContent, attributes={}) => {
+    const el = document.createElement(element);
+    for (const [key, value] of Object.entries(attributes)) {
+        el.setAttribute(key, value);
+    }
+    el.textContent = textContent;
+    return el;
+}
+
+randomIntFromInterval = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+formatSQLDateToDutchFormat = (dateInSQLFormat) => {
+    const [year, month, day] = dateInSQLFormat.split(/-/);
+    return `${day}-${month}-${year}`;
+}

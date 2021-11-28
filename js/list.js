@@ -4,26 +4,14 @@ const myListUL = document.getElementById('my-wishlist');
 const insertForm = document.getElementById('form-insert-wish');
 const updateForm = document.getElementById('form-update-wish');
 
-browserSupportsHTMLTemplate = () => {
-    return 'content' in document.createElement('template');
-    // return false;
-}
-
-createDOMElement = (element, textContent, attributes={}) => {
-    const el = document.createElement(element);
-    for (const [key, value] of Object.entries(attributes)) {
-        el.setAttribute(key, value);
-    }
-    el.textContent = textContent;
-    return el;
-}
-
-createWishElementWithHTMLTemplate = (wish) => {
+createWishElementWithHTMLTemplate = (template, wish) => {
     let clone = template.content.cloneNode(true);
     const li = clone.querySelector('li');
     li.setAttribute('data-wish-id', wish.wishID);
-    li.addEventListener('click', fillUpdateForm);
-    li.addEventListener('click', showModal);
+
+    const i = clone.querySelector('i');
+    i.addEventListener('click', fillUpdateForm);
+    i.addEventListener('click', showModal);
 
     const span = clone.querySelectorAll('span');
     
@@ -41,23 +29,6 @@ createWishElementWithHTMLTemplate = (wish) => {
 }
 
 createWishElementWithJQuery = (wish) => {
-
-    // const li = createDOMElement('li', '', { 'data-wish-id': wish.wishID });
-    // const i = createDOMElement('i', '', { class: 'fas fa-pen-square' });
-
-    // const wishHasAStoreURL = wish.store_url.length > 0;
-    // if (wishHasAStoreURL) {
-    //     const span = createDOMElement('span', `€${String(wish.price).replace('.', ',')} / `);
-    //     const a = createDOMElement('a', wish.description, 
-    //         { href: wish.store_url, target: '_blank' });
-    //     span.appendChild(a);
-    //     li.append(i, span);
-    // } else {
-    //     li.prepend(i);
-    // }
-
-    // console.log(li);
-    // return li;
 
     let $wishLi;
     if (wish.store_url) {     
@@ -80,17 +51,16 @@ window.addEventListener('load', () => {
 
     postData('controllers/get_my_wishlist.php', { method: 'GET' })
         .then(data => {
-            console.log(data);
             if (data.success) {
                 for (let w of data.wishes) {
 
                     // create a new Wish object and store it
-                    let wish = new Wish(w.wishID, w.userID, w.description,
-                        w.price, w.store, w.store_url);
+                    let wish = new Wish(w.ID, w.userID, w.beschrijving,
+                        w.prijs, w.winkel, w.url);
                     wishes[wish.wishID] = wish;
 
                     if (browserSupportsHTMLTemplate()) {
-                        myListUL.appendChild(createWishElementWithHTMLTemplate(wish));
+                        myListUL.appendChild(createWishElementWithHTMLTemplate(template, wish));
 
                     } else {
                         // myListUL.appendChild(createWishElementWithJQuery(wish));
@@ -132,12 +102,12 @@ insertForm.addEventListener('submit', (event) => {
 
 // update
 function fillUpdateForm() {
-    let wish_id = this.getAttribute('data-wish-id');
+    let wish_id = this.parentNode.getAttribute('data-wish-id');
     let wish = wishes[wish_id];
 
     const formUpdate = document.getElementById('form-update-wish');
     const input = formUpdate.querySelectorAll('input');
-    input[0].value = this.getAttribute('data-wish-id');
+    input[0].value = wish_id;
     input[1].value = wish.description;
     input[2].value = String(wish.price).replace('.', ',');
     input[3].value = wish.store;
@@ -151,7 +121,7 @@ updateForm.addEventListener('submit', (event) => {
 
     let wish = new Wish(formData.get('wish_id'), USER_ID, 
         formData.get('cadeau'), formData.get('prijs'),
-        formData.get('winkel'), formData.get('link'));    
+        formData.get('winkel'), formData.get('link'));   
 
     wish
         .updateWishInDB(
