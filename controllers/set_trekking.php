@@ -1,4 +1,5 @@
 <?php
+    // include_once('../config/includes.php');
     include_once '../config/includeFromBottom.php';
 
     function trekking($ids, $lootjes = array()) {
@@ -36,20 +37,20 @@
 
         $db->pdo->beginTransaction();
 
-        $stmt = $db->run("SELECT userID FROM surprise_to_user
-            WHERE surpriseID = (SELECT ID FROM surprise WHERE isActief)");
+        $stmt = $db->run("SELECT userID FROM sint_surprise_to_user
+            WHERE surpriseID = (SELECT ID FROM sint_surprise WHERE isActief)");
 
         $ids = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
         $lootjes = trekking($ids);
 
         foreach($lootjes as $userID => $getrokkenID) {
-            $db->run("UPDATE `surprise_to_user` SET `getrokkenID` = ? 
-                WHERE `surpriseID` = (SELECT `ID` FROM `surprise` WHERE `isActief`) 
+            $db->run("UPDATE `sint_surprise_to_user` SET `getrokkenID` = ? 
+                WHERE `surpriseID` = (SELECT `ID` FROM `sint_surprise` WHERE `isActief`) 
                 AND `userID` = ?",
                 [$getrokkenID, $userID]);
         }
 
-        $db->run("UPDATE `surprise` SET `isGesloten` = TRUE WHERE `isActief`");
+        $db->run("UPDATE `sint_surprise` SET `isGesloten` = TRUE WHERE `isActief`");
 
         $db->pdo->commit();
 

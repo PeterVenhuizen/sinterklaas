@@ -13,20 +13,20 @@
     include_once('../config/includeFromBottom.php');
 
     $stmt = $db->run("SELECT datum, prijsKlein, prijsGroot
-        FROM surprise
+        FROM sint_surprise
         WHERE isActief");
     $surprise = $stmt->fetch();
     $datum = date("d-m-Y", strtotime($surprise['datum']));
 
     $stmt = $db->run("SELECT 
-            (SELECT username FROM users WHERE users.id = surprise_to_user.userID) AS username,
-            (SELECT username FROM users WHERE users.id = surprise_to_user.getrokkenID) AS lootje,
-            (SELECT email FROM users WHERE users.id = surprise_to_user.userID) AS email
-        FROM surprise_to_user
+            (SELECT username FROM users WHERE users.id = sint_surprise_to_user.userID) AS username,
+            (SELECT username FROM users WHERE users.id = sint_surprise_to_user.getrokkenID) AS lootje,
+            (SELECT email FROM users WHERE users.id = sint_surprise_to_user.userID) AS email
+        FROM sint_surprise_to_user
         INNER JOIN (
-            SELECT surprise.ID FROM surprise
+            SELECT sint_surprise.ID FROM sint_urprise
             WHERE isActief
-        ) surprise ON surprise.ID = surprise_to_user.surpriseID");
+        ) sint_surprise ON sint_surprise.ID = sint_surprise_to_user.surpriseID");
 
     foreach ($stmt as $record) {
 

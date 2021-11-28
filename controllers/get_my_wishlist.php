@@ -1,12 +1,13 @@
 <?php
+    // include_once('../config/includes.php');
     include_once '../config/includeFromBottom.php';
 
     // insert the new wish
-    $stmt = $db->run("SELECT lijstje.* FROM `lijstje` 
+    $stmt = $db->run("SELECT sint_lijstje.* FROM `sint_lijstje` 
         INNER JOIN (
-            SELECT ID FROM `surprise`
+            SELECT ID FROM `sint_surprise`
             WHERE `isActief`
-        ) surprise ON surpriseID = lijstje.surpriseID
+        ) sint_surprise ON sint_surprise.ID = sint_lijstje.surpriseID
         WHERE `userID` = ?", 
         [$_SESSION['user_id']]);
 

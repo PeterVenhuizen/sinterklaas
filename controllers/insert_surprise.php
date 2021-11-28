@@ -1,4 +1,5 @@
 <?php
+    // include_once('../config/includes.php');
     include_once '../config/includeFromBottom.php';
     $params = json_decode(file_get_contents('php://input'), true);
 
@@ -6,9 +7,9 @@
 
         $db->pdo->beginTransaction();
 
-        $db->run("UPDATE `surprise` SET isActief = NULL WHERE isActief");
+        $db->run("UPDATE `sint_surprise` SET isActief = NULL WHERE isActief");
 
-        $status = $db->run("INSERT INTO `surprise`
+        $status = $db->run("INSERT INTO `sint_surprise`
         (`datum`, `prijsKlein`, `prijsGroot`)
         VALUES (?, ?, ?)",
         [

@@ -1,4 +1,17 @@
-CREATE TABLE lijstje (
+CREATE TABLE sint_surprise (
+    ID INTEGER NOT NULL AUTO_INCREMENT,
+    datum DATE NOT NULL,
+    prijsKlein FLOAT NOT NULL DEFAULT 12.50,
+        CONSTRAINT prijsKleinGroterDanNul CHECK (prijsKlein > 0),
+    prijsGroot FLOAT NOT NULL DEFAULT 25,
+        CONSTRAINT prijsGrootGroterDanNul CHECK (prijsGroot > 0),
+    isActief BOOLEAN DEFAULT 1,
+        CONSTRAINT enkelEenSurpriseIsActief UNIQUE (isActief),
+    isGesloten BOOLEAN NOT NULL DEFAULT 0,
+    PRIMARY KEY(ID)
+);
+
+CREATE TABLE sint_lijstje (
     ID INTEGER NOT NULL AUTO_INCREMENT,
     userID INTEGER NOT NULL,
     surpriseID INTEGER NOT NULL,
@@ -9,7 +22,18 @@ CREATE TABLE lijstje (
     isGekocht BOOLEAN DEFAULT 0,
     PRIMARY KEY (ID),
     FOREIGN KEY (userID) REFERENCES users(id),
-    FOREIGN KEY (surpriseID) REFERENCES surprise(ID)
+    FOREIGN KEY (surpriseID) REFERENCES sint_surprise(ID)
+);
+
+CREATE TABLE sint_surprise_to_user (
+    surpriseID INTEGER NOT NULL,
+    userID INTEGER NOT NULL,
+    getrokkenID INTEGER DEFAULT NULL,
+    PRIMARY KEY (surpriseID, userID),
+    FOREIGN KEY (surpriseID) REFERENCES sint_surprise(ID),
+    FOREIGN KEY (userID) REFERENCES users(id),
+    FOREIGN KEY (getrokkenID) REFERENCES users(id),
+    CONSTRAINT eenDeelnemerKanNietHunEigenLootjeHebben CHECK (userID != getrokkenID)
 );
 
 INSERT INTO lijstje (userID, surpriseID, beschrijving, prijs)
@@ -23,34 +47,14 @@ INNER JOIN (
 ) surprise on surprise.ID = lijstje.surpriseID
 WHERE userID != ?
 
-CREATE TABLE surprise (
-    ID INTEGER NOT NULL AUTO_INCREMENT,
-    datum DATE NOT NULL,
-    prijsKlein FLOAT NOT NULL DEFAULT 12.50,
-        CONSTRAINT prijsKleinGroterDanNul CHECK (prijsKlein > 0),
-    prijsGroot FLOAT NOT NULL DEFAULT 25,
-        CONSTRAINT prijsGrootGroterDanNul CHECK (prijsGroot > 0),
-    isActief BOOLEAN DEFAULT 1,
-        CONSTRAINT enkelEenSurpriseIsActief UNIQUE (isActief),
-    isGesloten BOOLEAN NOT NULL DEFAULT 0,
-    PRIMARY KEY(ID)
-);
+
 
 BEGIN TRANSACTION;
 UPDATE surprise SET isActief = NULL WHERE isActief;
 UPDATE surprise SET isActief = TRUE WHERE ID = ?;
 COMMIT;
 
-CREATE TABLE surprise_to_user (
-    surpriseID INTEGER NOT NULL,
-    userID INTEGER NOT NULL,
-    getrokkenID INTEGER DEFAULT NULL,
-    PRIMARY KEY (surpriseID, userID),
-    FOREIGN KEY (surpriseID) REFERENCES surprise(ID),
-    FOREIGN KEY (userID) REFERENCES users(id),
-    FOREIGN KEY (getrokkenID) REFERENCES users(id),
-    CONSTRAINT eenDeelnemerKanNietHunEigenLootjeHebben CHECK (userID != getrokkenID)
-);
+
 
 SELECT id, username FROM users WHERE privileges >= 1;
 SELECT userID FROM surprise_to_user 

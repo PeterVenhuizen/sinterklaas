@@ -1,7 +1,8 @@
 <?php
+    // include_once('../config/includes.php');
     include_once '../config/includeFromBottom.php';
 
-    $stmt = $db->run("SELECT * FROM `surprise` ORDER BY `datum`");
+    $stmt = $db->run("SELECT * FROM `sint_surprise` ORDER BY `datum`");
 
     if ($stmt->rowCount() > 0) {
         $records = array_map(function($row) { return $row; }, $stmt->fetchAll());
