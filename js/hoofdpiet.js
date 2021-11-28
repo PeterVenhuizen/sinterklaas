@@ -107,6 +107,8 @@ fetch('controllers/get_surprise_users.php')
 
 		});
 
+		getTrekking();
+
 	})
 	.catch(error => console.error(error));
 
@@ -115,6 +117,7 @@ function lockUp() {
 	targets[0].classList.add('is-locked');
 	targets[1].classList.add('is-locked');
 	opslaanButton.setAttribute('disabled', true);
+	buttonTrekking.setAttribute('disabled', true);
 }
 
 function handleDragStart(e) {
@@ -178,3 +181,54 @@ opslaanButton.addEventListener('click', (e) => {
 });
 
 // doe een trekking voor de actieve surprise met de geselecteerde deelnemers
+const divTrekking = document.getElementById('trekking');
+const buttonTrekking = document.getElementById('doe-trekking');
+
+function getTrekking() {
+
+	fetch('controllers/get_trekking.php')
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				const template = document.getElementById('trekking-template');
+				let clone = template.content.cloneNode(true);
+
+				const details = clone.querySelector('details');
+				data.records.forEach(record => {
+					const div = document.createElement('div');
+					div.textContent = `${record.username} -> ${record.lootje}`;
+					details.appendChild(div);
+				});
+
+				divTrekking.appendChild(clone);
+			}
+		})
+		.catch(error => console.error(error));
+}
+
+buttonTrekking.addEventListener('click', (e) => {
+	const tweeOfMeerDeelnemers = targets[1].querySelectorAll('.drag-user').length >= 2;
+	if (tweeOfMeerDeelnemers) {
+
+		(async () => {
+			const flashingDots = document.querySelector('.dot-flashing');
+			flashingDots.style.display = 'flex';
+			try {
+				const setTrekking = await fetch('controllers/set_trekking.php')
+					.then(response => response);
+
+				if (setTrekking.ok) {
+					const mailTrekking = await fetch('controllers/mail_trekking.php')
+						.then(response => response);
+
+					console.log(mailTrekking);
+					if (mailTrekking.ok) {
+						location.reload();
+					}
+				}
+			} catch (error) {
+				console.error(error);
+			}
+		})();
+	}
+});

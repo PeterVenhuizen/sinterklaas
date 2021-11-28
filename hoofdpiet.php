@@ -69,6 +69,22 @@
                     </div>
                 </div>
                 <button id="save-surprise-deelnemers" class="btn-primary btn-small">Opslaan</button>
+
+                <div id="trekking">
+                    <h2>Trekking</h2>
+                    <p>
+                        Zodra alle deelnemers zijn geselecteerd, kan je lootjes trekken door op de "Trek lootjes"
+                        knop te klikken, aangenomen dat twee of meer deelnemers zijn geselecteerd.
+                    </p>
+                    <p>
+                        <b>Let op</b>: Nadat de lootjes zijn getrokken, kunnen de deelnemers niet meer worden gewijzigd 
+                        en gaat de surprise "op slot"!
+                    </p>
+                </div>
+                <button id="doe-trekking" class="btn-primary btn-small">Trek lootjes</button>
+
+                <div class="dot-flashing"></div>
+
             </div>
 
         </main>
@@ -88,6 +104,12 @@
             <!-- <i class="fas fa-trash"></i> -->
             <!-- <i class="fas fa-chevron-down"></i>   -->
         </div>
+    </template>
+
+    <template id="trekking-template">
+        <details>
+            <summary><i class="fas fa-exclamation-circle"></i> Spoiler: bekijk trekking <i class="fas fa-exclamation-circle"></i></summary>
+        </details>
     </template>
 
     <div id="modal-wrapper">
