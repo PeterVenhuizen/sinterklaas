@@ -1,9 +1,15 @@
 <?php
     include_once '../config/includeFromBottom.php';
 
-    $stmt = $db->run("SELECT wish.*, users.username FROM wish, users
-        WHERE wish.userID != ? AND wish.userID = users.id
-        ORDER BY wish.userID DESC", 
+    $stmt = $db->run("SELECT lijstje.*, 
+        (SELECT username FROM users WHERE users.id = lijstje.userID) AS username 
+        FROM lijstje
+        INNER JOIN (
+            SELECT ID FROM surprise
+            WHERE isActief
+        ) surprise ON surprise.ID = lijstje.surpriseID
+        WHERE lijstje.userID != ?
+        ORDER BY lijstje.userID DESC", 
         [$_SESSION['user_id']]);
 
     if ($stmt->rowCount() > 0) {

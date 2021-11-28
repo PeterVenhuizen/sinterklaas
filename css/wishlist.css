@@ -9,6 +9,11 @@
     background-color: #fbfbf8;
     margin-top: 20px;
 }
+.empty-p {
+    font-size: 1.25em;
+    text-align: center;
+    margin: 1em 0;
+}
 
 .wishlist header {
     display: flex;

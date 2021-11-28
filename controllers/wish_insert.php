@@ -3,13 +3,14 @@
     $params = json_decode(file_get_contents('php://input'), true);
 
     // insert the new wish
-    $status = $db->run("INSERT INTO `wish`
-        (`userID`, `description`, `price`, `store`, `store_url`)
-        VALUES (?, ?, ?, ?, ?)",
+    $status = $db->run("INSERT INTO `lijstje`
+        (`userID`, `surpriseID`, `beschrijving`, `prijs`, `winkel`, `url`)
+        VALUES (?, (SELECT ID FROM `surprise` WHERE `isActief`), ?, ?, ?, ?)",
         [
-            $params['userID'], $params['description'], $params['price'], 
-            $params['store'], $params['store_url']
-        ]);
+            $params['userID'], $params['beschrijving'], $params['prijs'], 
+            $params['winkel'], $params['url']
+        ]
+    );
     
     echo json_encode(array(
         "status" => $status,

@@ -34,3 +34,8 @@ createDOMElement = (element, textContent, attributes={}) => {
 randomIntFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+formatSQLDateToDutchFormat = (dateInSQLFormat) => {
+    const [year, month, day] = dateInSQLFormat.split(/-/);
+    return `${day}-${month}-${year}`;
+}
