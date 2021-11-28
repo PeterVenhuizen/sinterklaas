@@ -12,7 +12,7 @@
     // include_once('../config/includes.php');
     include_once('../config/includeFromBottom.php');
 
-    $stmt = $db->run("SELECT datum, prijsKlein, prijsGroot
+    $stmt = $db->run("SELECT *
         FROM sint_surprise
         WHERE isActief");
     $surprise = $stmt->fetch();
@@ -28,61 +28,65 @@
             WHERE isActief
         ) sint_surprise ON sint_surprise.ID = sint_surprise_to_user.surpriseID");
 
-    foreach ($stmt as $record) {
+    if (!$surprise['isGesloten']) {
 
-        $from = 'contact@petervenhuizen.nl';
+        foreach ($stmt as $record) {
 
-        try {
-            
-            $mail = new PHPMailer(true);
-            $mail->isSMTP();
-            $mail->Host       = 'mail.mijndomein.nl';
-            $mail->SMTPAuth   = true;
-            $mail->Username   = $from;
-            $mail->Password   = 'EQ6p*RGt*u&LtaQP';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 587;
-            // $mail->SMTPDebug  = true;
+            $from = 'contact@petervenhuizen.nl';
 
-            // recipients
-            $mail->setFrom($from, 'petervenhuizen.nl');
-            // $mail->addAddress($record['email'], $record['username']);
-            $mail->addAddress($record['email'], $record['username']);
+            try {
+                
+                $mail = new PHPMailer(true);
+                $mail->isSMTP();
+                $mail->Host       = 'mail.mijndomein.nl';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = $from;
+                $mail->Password   = 'EQ6p*RGt*u&LtaQP';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port       = 587;
+                // $mail->SMTPDebug  = true;
 
-            // content
-            $body = "<p>Beste ${record['username']},</p>";
-            $body .= "<p>De lootjes zijn getrokken en jij hebt het lootje van <br/><br/> 
-            >>> <span style='font-weight:bold';>${record['lootje']}</span> <<< </p>";
+                // recipients
+                $mail->setFrom($from, 'petervenhuizen.nl');
+                // $mail->addAddress($record['email'], $record['username']);
+                $mail->addAddress($record['email'], $record['username']);
 
-            $body .= "<p>We vieren het dit jaar op ${datum} en de prijs voor de kleine 
-            cadeautjes is &euro;${surprise['prijsKlein']} en voor het grote cadeau is dit &euro;${surprise['prijsGroot']}.
-            De spelregels zijn als volgt: 1) je schrijft een gedicht(je) en koopt een groot cadeau
-            voor de persoon op jouw lootje en 2) je koopt een klein cadeautje voor iedereen die mee doet,
-            dus ook nog een klein cadeautje voor de persoon op je lootje.</p>";
+                // content
+                $body = "<p>Beste ${record['username']},</p>";
+                $body .= "<p>De lootjes zijn getrokken en jij hebt het lootje van <br/><br/> 
+                >>> <span style='font-weight:bold';>${record['lootje']}</span> <<< </p>";
 
-            $body .= '<p>Zoals vanouds kunnen de cadeautjes groot en klein worden doorgestreept op
-            de <a href="https://petervenhuizen.nl/sinterklaas/">Sinterklaas website</a>, maar daarvoor
-            moet je natuurlijk wel snel je <a href="https://petervenhuizen.nl/sinterklaas/mijn_lijstje/">lijstje</a> 
-            samenstellen!</p>';
+                $body .= "<p>We vieren het dit jaar op ${datum} en de prijs voor de kleine 
+                cadeautjes is &euro;${surprise['prijsKlein']} en voor het grote cadeau is dit &euro;${surprise['prijsGroot']}.
+                De spelregels zijn als volgt: 1) je schrijft een gedicht(je) en koopt een groot cadeau
+                voor de persoon op jouw lootje en 2) je koopt een klein cadeautje voor iedereen die mee doet,
+                dus ook nog een klein cadeautje voor de persoon op je lootje.</p>";
 
-            $body .= '<p>De (digitale) bingoballen zijn gepoetst en zijn helemaal klaar voor 
-            meerdere ronden veel te fanatiek bingo spelen!</p>';
+                $body .= '<p>Zoals vanouds kunnen de cadeautjes groot en klein worden doorgestreept op
+                de <a href="https://petervenhuizen.nl/sinterklaas/">Sinterklaas website</a>, maar daarvoor
+                moet je natuurlijk wel snel je <a href="https://petervenhuizen.nl/sinterklaas/mijn_lijstje/">lijstje</a> 
+                samenstellen!</p>';
 
-            $body .= '<p>Tot snel!</p><p>De Website-Piet</p>';
+                $body .= '<p>De (digitale) bingoballen zijn gepoetst en zijn helemaal klaar voor 
+                meerdere ronden veel te fanatiek bingo spelen!</p>';
 
-            $subject = "Sinterklaas trekking ${datum}";
-            $mail->isHTML(true);
-            $mail->Subject = $subject;
-            $mail->Body    = $body;
-            // $mail->AltBody = $alt_body;
+                $body .= '<p>Tot snel!</p><p>De Website-Piet</p>';
 
-            $mail->send();
+                $subject = "Sinterklaas trekking ${datum}";
+                $mail->isHTML(true);
+                $mail->Subject = $subject;
+                $mail->Body    = $body;
+                // $mail->AltBody = $alt_body;
 
-        } catch (Exception $e) {
-            // print_r($e);
-            exit;
+                $mail->send();
+
+            } catch (Exception $e) {
+                // print_r($e);
+                exit;
+            }
+
         }
 
-    }
+    } 
 
 ?>
