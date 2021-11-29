@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/wishlist.css">
+    <link rel="stylesheet" href="./css/lijstje.css">
     <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -48,7 +49,8 @@
             </div>
 
             <div id="lootje" class="wishlist bg-pinkish">
-                Je hebt het lootje van: <div>Papa</div>
+                <!-- Je hebt het lootje van: <div>Papa</div> -->
+                Hier komt je lootje te staan zodra er een trekking heeft plaatsgevonden.
             </div>
 
             <div id="lijstje" class="wishlist note-paper big">

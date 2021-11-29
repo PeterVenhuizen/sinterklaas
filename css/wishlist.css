@@ -1,40 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
-#app > main {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-        "lootje"
-        "lijstje"
-        "spelregels";
-    gap: 0;
-}
-
-#lootje {
-    grid-area: lootje;
-    text-align: center;
-}
-#lootje div {
-    font-family: 'Pacifico', cursive;
-    font-weight: bold;
-    font-size: 3em;
-    margin: 0.5em;
-}
-
-#spelregels {
-    grid-area: spelregels;
-}
-#spelregels ul {
-    list-style-type: disc;
-    margin-left: 1.25em;
-}
-#spelregels li {
-    font-size: unset;
-}
-
-#lijstje {
-    grid-area: lijstje;
-}
 .wishlist {
     line-height: 1;
     position: relative;
@@ -194,15 +157,6 @@ li.bought i {
 }
 
 @media all and (min-width: 700px) {
-
-    #app > main {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 
-            "lootje spelregels"
-            "lijstje lijstje";
-        justify-items: center;
-    }
 
     .wishlist {
         min-width: 250px;
