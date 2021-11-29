@@ -30,6 +30,7 @@ class Wish {
         .then(data => {
             console.log(data);
             this.#wishID = data.id;
+            location.reload();
         });
     }
 

@@ -97,7 +97,7 @@ insertForm.addEventListener('submit', (event) => {
         formData.get('cadeau'), formData.get('prijs'),
         formData.get('winkel'), formData.get('link'));
     wish.insertWishInDB();
-    location.reload();
+    // location.reload();
 });
 
 // update
