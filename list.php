@@ -37,7 +37,21 @@
         <nav><?php include 'components/nav.php'; ?></nav>
         <main>
 
-            <div class="wishlist note-paper big">
+            <div id="spelregels" class="wishlist bg-yellowish">
+                <h3>Spelregels: </h3>
+                <ul>
+                    <li>Klein cadeau &euro;12,50</li>
+                    <li>Groot cadeau &euro;25,-</li>
+                    <li>Gedicht(je) + groot cadeau voor de persoon op je lootje</li>
+                    <li>Klein cadeau voor iedereen, inclusief de persoon op je lootje</li>
+                </ul>
+            </div>
+
+            <div id="lootje" class="wishlist bg-pinkish">
+                Je hebt het lootje van: <div>Papa</div>
+            </div>
+
+            <div id="lijstje" class="wishlist note-paper big">
                 <header>
                     <h2>Mijn Lijstje</h2>
                 </header>
