@@ -43,9 +43,45 @@ createWishElementWithJQuery = (wish) => {
     return $wishLi;
 }
 
+laadLootjeEnSpelregels = () => {
+    fetch('controllers/get_lootje_en_spelregels.php')
+        .then(response => response.json())
+        .then(data => {
+            const divLootje = document.createElement('div');
+            divLootje.id = 'lootje';
+            divLootje.classList.add('wishlist', 'bg-blueish');
+            divLootje.innerHTML = (data.lootje != "") 
+                ? `Je hebt het lootje van: <div>${data.lootje}</div>`
+                : 'Hier komt je lootje te staan zodra er een trekking heeft plaatsgevonden.';
+
+            const divSpelregels = document.createElement('div');
+            divSpelregels.id = 'spelregels';
+            divSpelregels.classList.add('wishlist', 'bg-yellowish');
+            
+            const h3 = document.createElement('h3');
+            h3.textContent = 'Spelregels:';
+            
+            const ul = document.createElement('ul');
+            ul.innerHTML = `<li>Datum: ${formatSQLDateToDutchFormat(data.surprise.datum)}</li>
+                <li>Klein cadeau: &euro;${data.surprise.prijsKlein}</li>
+                <li>Groot cadeau: &euro;${data.surprise.prijsGroot}</li>`;
+
+            const p = document.createElement('p');
+            p.innerText = `Gedicht(je) + groot cadeau voor de persoon op je lootje en klein cadeautje voor iedereen, inclusief de persoon op je lootje`;
+
+            divSpelregels.append(h3, ul, p);
+
+            const main = document.querySelector('main');
+            main.append(divLootje, divSpelregels);
+        })
+        .catch(error => console.error(error));
+}
+
 // load wishes from DB
 let wishes = {};
 window.addEventListener('load', () => {
+
+    laadLootjeEnSpelregels();
 
     $myListULForJQuery = $('#my-wishlist');
 
@@ -97,7 +133,7 @@ insertForm.addEventListener('submit', (event) => {
         formData.get('cadeau'), formData.get('prijs'),
         formData.get('winkel'), formData.get('link'));
     wish.insertWishInDB();
-    location.reload();
+    // location.reload();
 });
 
 // update

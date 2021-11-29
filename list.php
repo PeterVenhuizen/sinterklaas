@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/wishlist.css">
+    <link rel="stylesheet" href="./css/lijstje.css">
     <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -37,7 +38,7 @@
         <nav><?php include 'components/nav.php'; ?></nav>
         <main>
 
-            <div class="wishlist note-paper big">
+            <div id="lijstje" class="wishlist note-paper big">
                 <header>
                     <h2>Mijn Lijstje</h2>
                 </header>
@@ -63,9 +64,9 @@
                     <div class="form-inline">
                         <label for="prijs">Prijs <span class="required">*</span></label>
                         <input type="text" name="prijs" 
-                            placeholder="Prijs (bijvoorbeeld 9.99 of 15)" 
+                            placeholder="Prijs (bijvoorbeeld 9,99 of 15)" 
                             pattern="^[0-9]{1,2}(,[0-9]{0,2})?"
-                            title="Prijs kan enkel bestaan uit maximaal twee getallen voor en na de comma, bijvoorbeeld 9.99 of 15"
+                            title="Prijs kan enkel bestaan uit maximaal twee getallen voor en na de comma, bijvoorbeeld 9,99 of 15"
                             required>
                     </div>
 
