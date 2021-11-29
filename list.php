@@ -63,9 +63,9 @@
                     <div class="form-inline">
                         <label for="prijs">Prijs <span class="required">*</span></label>
                         <input type="text" name="prijs" 
-                            placeholder="Prijs (bijvoorbeeld 9.99 of 15)" 
+                            placeholder="Prijs (bijvoorbeeld 9,99 of 15)" 
                             pattern="^[0-9]{1,2}(,[0-9]{0,2})?"
-                            title="Prijs kan enkel bestaan uit maximaal twee getallen voor en na de comma, bijvoorbeeld 9.99 of 15"
+                            title="Prijs kan enkel bestaan uit maximaal twee getallen voor en na de comma, bijvoorbeeld 9,99 of 15"
                             required>
                     </div>
 
