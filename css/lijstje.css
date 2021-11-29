@@ -31,6 +31,10 @@
 #spelregels li {
     font-size: unset;
 }
+#spelregels p {
+    margin-top: 0.5em;
+    line-height: 1.2em;
+}
 
 #lijstje {
     grid-area: lijstje;
